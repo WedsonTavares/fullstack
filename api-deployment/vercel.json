@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "SENDGRID_API_KEY": "@sendgrid_api_key",
+    "EMAILJS_PUBLIC_KEY": "@emailjs_public_key",
+    "EMAILJS_SERVICE_ID": "@emailjs_service_id",
+    "EMAILJS_TEMPLATE_ID": "@emailjs_template_id"
+  }
+}
