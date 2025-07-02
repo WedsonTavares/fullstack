@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import emailjs from "emailjs-com"; // Importe o Email.js
+import emailjs from "@emailjs/browser"; // Importe o Email.js
 
 const info = [
   { icon: <FaPhoneAlt />, title: "Telefone", descripition: "(16) 992331680" },
