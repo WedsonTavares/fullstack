@@ -1,5 +1,7 @@
 "use client";
 
+import { Navigation } from 'swiper/modules';
+import 'swiper/css/navigation';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -30,9 +32,13 @@ const projects = [
             { name: 'Javascript' }
         ],
         images: [
-            // '/assets/frontend.png',
-            '/assets/interiores-mob.png',  // AJUSTAR FOTOS COM A DIMENSÃO 200X200
-            // '/assets/interiores-mob2.png'
+            '/assets/interiores2.png',
+            '/assets/interiores3.png',
+            '/assets/interiores-mob.png',
+            '/assets/interiores-mob2.png',
+            '/assets/interiores4.png',
+            '/assets/interiores5.png',
+            '/assets/interiores6.png'
         ],
         live: 'https://leafy-salamander-302e1a.netlify.app/',
         github: 'https://github.com/WedsonTavares'
@@ -55,7 +61,7 @@ const projects = [
     },
     {
         num: '03',
-        category: 'FullStack',
+        category: 'Landing Page',
         title: 'Projeto3',
         description: 'Descrição do projeto 3',
         stack: [
@@ -64,16 +70,16 @@ const projects = [
             { name: 'Javascript' }
         ],
         images: [
-            '/assets/frontend.png'
+            '/assets/soldati.png'
         ],
-        live: '',
-        github: 'https://github.com/WedsonTavares'
+        live: 'https://www.soldatieletricaear.com.br/',
+        github: 'https://www.soldatieletricaear.com.br/'
     },
     {
         num: '04',
         category: 'FullStack',
-        title: 'Projeto3',
-        description: 'Descrição do projeto 3',
+        title: 'Projeto4',
+        description: 'Descrição do projeto 4',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },
@@ -88,8 +94,8 @@ const projects = [
     {
         num: '05',
         category: 'FullStack',
-        title: 'Projeto3',
-        description: 'Descrição do projeto 3',
+        title: 'Projeto5',
+        description: 'Descrição do projeto 5',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },
@@ -104,8 +110,8 @@ const projects = [
     {
         num: '06',
         category: 'FullStack',
-        title: 'Projeto3',
-        description: 'Descrição do projeto 3',
+        title: 'Projeto6',
+        description: 'Descrição do projeto 6',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },
@@ -120,12 +126,12 @@ const projects = [
 ];
 
 export default function Projects() {
-    const [project, setProjects] = useState(projects[0]);
+    const [projectIndex, setProjectIndex] = useState(0);
+    const project = projects[projectIndex];
 
-    const handleSlideChange = (swiper) => {
-        const currenIndex = swiper.activeIndex;
-        setProjects(projects[currenIndex]);
-    };
+    // Funções para as setas verdes dos projetos
+    const handlePrevProject = () => setProjectIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    const handleNextProject = () => setProjectIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
 
     return (
         <motion.section
@@ -135,6 +141,7 @@ export default function Projects() {
         >
             <div className='container mx-auto'>
                 <div className='flex flex-col xl:flex-row xl:gap-[30px]'>
+                    {/* COLUNA DE INFORMAÇÕES DO PROJETO */}
                     <div className='w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none'>
                         <div className='flex flex-col gap-[30px] h-[50%]'>
                             {/* Número do projeto */}
@@ -161,18 +168,31 @@ export default function Projects() {
                             {/* Botões */}
                             <div className='flex items-center gap-4'>
                                 {/* Ver projeto ao vivo */}
-                                <Link target='_blank' href={project.live}>
-                                    <TooltipProvider delayDuration={100}>
-                                        <Tooltip>
-                                            <TooltipTrigger className='w-[70px] h-[70px] items-center justify-center rounded-full bg-white/5 flex group'>
-                                                <BsArrowUpRight className='text-white text-3xl group-hover:text-accent' />
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                                <p>Ver Projeto</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
-                                </Link>
+                                {project.live ? (
+                                    <a
+                                        href={project.live}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-[70px] h-[70px] items-center justify-center rounded-full bg-white/5 flex group"
+                                    >
+                                        <TooltipProvider delayDuration={100}>
+                                            <Tooltip>
+                                                <TooltipTrigger asChild>
+                                                    <span>
+                                                        <BsArrowUpRight className='text-white text-3xl group-hover:text-accent' />
+                                                    </span>
+                                                </TooltipTrigger>
+                                                <TooltipContent>
+                                                    <p>Ver Projeto</p>
+                                                </TooltipContent>
+                                            </Tooltip>
+                                        </TooltipProvider>
+                                    </a>
+                                ) : (
+                                    <span className='w-[70px] h-[70px] flex items-center justify-center rounded-full bg-white/5 text-gray-400 cursor-not-allowed'>
+                                        <BsArrowUpRight className='text-3xl' />
+                                    </span>
+                                )}
                                 {/* Ver repositório no GitHub */}
                                 <Link target='_blank' href={project.github}>
                                     <TooltipProvider delayDuration={100}>
@@ -189,46 +209,63 @@ export default function Projects() {
                             </div>
                         </div>
                     </div>
-                    <div className='w-full xl:w-[50%]'>
+                    {/* COLUNA DO SLIDESHOW DE IMAGENS */}
+                    <div className='w-full xl:w-[50%] flex flex-col items-center'>
                         <Swiper
                             spaceBetween={30}
                             slidesPerView={1}
-                            className='xl:h-[520px] mb-12'
-                            onSlideChange={handleSlideChange}
+                            className='xl:h-[520px] mb-4 w-full'
+                            navigation={true}
+                            modules={[Navigation]}
+                            autoplay={{ delay: 3000, disableOnInteraction: false }}
+                            loop={true}
+                            style={{
+                                '--swiper-navigation-size': '28px',
+                                '--swiper-navigation-color': '#22c55e', // verde
+                            }}
                         >
-                            {projects.map((project, index) => (
-                                <SwiperSlide key={index} className='w-full'>
-                                    <div className='h-[460px] relative group flex justify-center items-center bg-pink-50/20 rounded-xl'>
-                                        {/* Carregamento */}
-                                        <div className='absolute top-0 bottom-0 w-full h-full bg-black/10 z-10'></div>
-                                        {/* Imagens em cascata */}
-                                        <div className='relative w-full h-full flex items-center justify-center'>
-                                            {(project.images || []).map((img, idx) => (
-                                                <Image
-                                                    key={idx}
-                                                    src={img}
-                                                    alt={`Imagem ${idx + 1} do projeto ${project.title}`}
-                                                    fill
-                                                    className='object-cover rounded-xl absolute transition-all duration-300'
-                                                    style={{
-                                                        left: `${idx * 30}px`,
-                                                        top: `${idx * 20}px`,
-                                                        zIndex: 20 - idx,
-                                                        opacity: 1 - idx * 0.18
-                                                    }}
-                                                />
-                                            ))}
+                            {project.images && project.images.length > 0 ? (
+                                project.images.map((img, idx) => (
+                                    <SwiperSlide key={idx} className='w-full'>
+                                        <div className='h-[460px] relative flex justify-center items-center bg-transparent rounded-xl'>
+                                            {/* Carregamento */}
+                                            <div className='absolute top-0 bottom-0 w-full h-full bg-black/10 z-10'></div>
+                                            <Image
+                                                src={img}
+                                                alt={`Imagem ${idx + 1} do projeto ${project.title}`}
+                                                fill
+                                                className='object-contain rounded-xl transition-all duration-300 shadow-lg'
+                                                style={{
+                                                    left: 0,
+                                                    top: 0,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    maxWidth: '100%',
+                                                    maxHeight: '100%',
+                                                    position: 'absolute'
+                                                }}
+                                            />
                                         </div>
+                                    </SwiperSlide>
+                                ))
+                            ) : (
+                                <SwiperSlide className='w-full'>
+                                    <div className='h-[460px] flex justify-center items-center bg-transparent rounded-xl'>
+                                        <span className="text-white/60">Sem imagem</span>
                                     </div>
                                 </SwiperSlide>
-                            ))}
-                            {/* Botões do slider */}
-                            <WorkSliderBtns
-                                containerStyles='flex gap-2 absolute right-0 bottom-[calc(50%_-_12px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none'
-                                btnsStyles='bg-accent hover:bg-accent-hover text-primary text-[22px] w-[24px] h-[34px] flex justify-center items-center transition-all rounded-r'
-                                btnStyles='bg-accent hover:bg-accent-hover text-primary text-[22px] w-[24px] h-[34px] flex justify-center items-center transition-all rounded-l'
-                            />
+                            )}
                         </Swiper>
+                        {/* Botões verdes para trocar de projeto, abaixo das imagens */}
+                        <div className="w-full flex justify-center">
+                            <WorkSliderBtns
+                                onPrev={handlePrevProject}
+                                onNext={handleNextProject}
+                                containerStyles='flex gap-2 w-full justify-between xl:w-max xl:justify-none'
+                                btnsStyles='bg-accent hover:bg-accent-hover text-primary text-[22px] w-[40px] h-[40px] flex justify-center items-center transition-all rounded'
+                                btnStyles='bg-accent hover:bg-accent-hover text-primary text-[22px] w-[40px] h-[40px] flex justify-center items-center transition-all rounded'
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

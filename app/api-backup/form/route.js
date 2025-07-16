@@ -1,4 +1,5 @@
 // app/api/form/route.js
+
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
@@ -8,14 +9,30 @@ function timeoutAfter(ms) {
   );
 }
 
+function sanitizeString(str, maxLength = 100) {
+  if (typeof str !== "string") return "";
+  return str.replace(/<[^>]*>?/gm, "").trim().slice(0, maxLength);
+}
+
+function isValidEmail(email) {
+  return /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(email);
+}
+
 export async function POST(request) {
   try {
-    console.log("📨 Requisição recebida");
     const data = await request.json();
 
-    if (!data.firstname || !data.email || !data.service) {
+    // Validação e sanitização
+    const firstname = sanitizeString(data.firstname, 50);
+    const lastname = sanitizeString(data.lastname, 50);
+    const email = sanitizeString(data.email, 100);
+    const phone = sanitizeString(data.phone, 30);
+    const service = sanitizeString(data.service, 30);
+    const message = sanitizeString(data.message, 500);
+
+    if (!firstname || !email || !service || !isValidEmail(email)) {
       return NextResponse.json(
-        { error: "Preencha todos os campos." },
+        { error: "Dados inválidos ou incompletos." },
         { status: 400 }
       );
     }
@@ -29,21 +46,25 @@ export async function POST(request) {
     const collection = db.collection("formulario_portifolio");
 
     await collection.insertOne({
-      ...data,
+      firstname,
+      lastname,
+      email,
+      phone,
+      service,
+      message,
       createdAt: new Date(),
       emailSent: false,
     });
-
-    console.log("✅ Dados salvos no MongoDB");
 
     return NextResponse.json({
       message: "Formulário enviado com sucesso!",
     });
 
   } catch (error) {
-    console.error("❌ Erro ao processar:", error);
+    // Log apenas genérico
+    console.error("Erro ao processar formulário.");
     return NextResponse.json(
-      { error: "Erro interno." },
+      { error: "Erro interno ao processar o formulário." },
       { status: 500 }
     );
   }

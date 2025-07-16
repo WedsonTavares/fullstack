@@ -15,13 +15,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+<<<<<<< HEAD
 import emailjs from "@emailjs/browser"; // Importe o Email.js
+=======
+import emailjs from "emailjs-com";
+>>>>>>> 54f6e61 (Melhorias de SEO, UX do formulário, integração Google Ads e ajustes de segurança)
 
 const info = [
   { icon: <FaPhoneAlt />, title: "Telefone", descripition: "(16) 992331680" },
   { icon: <FaEnvelope />, title: "Email", descripition: "wedsonsobral@gmail.com" },
   { icon: <FaMapMarkerAlt />, title: "Endereço", descripition: "Ribeirão Preto - SP" },
 ];
+
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -36,16 +41,31 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [touched, setTouched] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  function isValidEmail(email) {
+    return /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(email);
+  }
 
   const isFormValid =
-    form.firstname && form.lastname && form.email && form.phone && form.service && form.message;
+    form.firstname.trim().length > 1 &&
+    form.lastname.trim().length > 1 &&
+    isValidEmail(form.email) &&
+    form.phone.trim().length > 7 &&
+    form.service.trim().length > 1 &&
+    form.message.trim().length > 5;
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setTouched({ ...touched, [e.target.name]: true });
+    setSubmitted(false);
   };
 
   const handleServiceChange = (value) => {
     setForm({ ...form, service: value });
+    setTouched({ ...touched, service: true });
+    setSubmitted(false);
   };
 
   const handleSubmit = async (e) => {
@@ -53,65 +73,78 @@ export default function Contact() {
     setSuccess(false);
     setError(false);
     setLoading(true);
+    setSubmitted(true);
 
+    // Validação extra antes do envio
+    if (!isFormValid) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    let emailSent = false;
+    let dbSaved = false;
+
+    // Tenta enviar o e-mail via EmailJS
     try {
-      // Envia os dados para o backend, salvando no banco de dados
-      const res = await fetch("/api/form", {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          firstname: form.firstname.trim(),
+          lastname: form.lastname.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          service: form.service.trim(),
+          message: form.message.trim(),
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+      emailSent = true;
+    } catch (err) {
+      emailSent = false;
+    }
+
+    // Sempre tenta salvar no MongoDB
+    try {
+      await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          firstname: form.firstname.trim(),
+          lastname: form.lastname.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          service: form.service.trim(),
+          message: form.message.trim(),
+        }),
       });
-
-      if (!res.ok) throw new Error("Erro no envio");
-      console.log("Resposta do Backend:", res); // Veja o retorno do fetch
-
-      const data = await res.json();
-      setSuccess(true);
-      setForm({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      });
-
-      setTimeout(() => setSuccess(false), 4000);
-
-      // Envia o e-mail usando o Email.js após salvar os dados
-      emailjs
-        .send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, // Usando variável de ambiente pública
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, // Usando variável de ambiente pública
-          {
-            firstname: form.firstname,
-            lastname: form.lastname,
-            email: form.email,
-            phone: form.phone,
-            service: form.service,
-            message: form.message,
-          },
-          process.env.NEXT_PUBLIC_EMAILJS_USER_ID // Usando variável de ambiente pública
-        )
-        .then(
-          (response) => {
-            console.log("Email enviado com sucesso:", response);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 4000);
-          },
-          (err) => {
-            console.error("Erro ao enviar o e-mail:", err);
-            setError(true);
-            setTimeout(() => setError(false), 4000);
-          }
-        );
+      dbSaved = true;
     } catch (err) {
-      console.error(err);
-      setError(true);
-      setTimeout(() => setError(false), 4000);
-    } finally {
-      setLoading(false);
+      dbSaved = false;
     }
+
+    // Feedback para o usuário
+    if (emailSent && dbSaved) {
+      setSuccess(true);
+      setTouched({});
+      setSubmitted(false);
+    } else {
+      setError(true);
+    }
+    setForm({
+      firstname: "",
+      lastname: "",
+      email: "",
+      phone: "",
+      service: "",
+      message: "",
+    });
+    setTimeout(() => {
+      setSuccess(false);
+      setError(false);
+    }, 4000);
+    setLoading(false);
   };
 
   return (
@@ -156,6 +189,9 @@ export default function Contact() {
                   value={form.firstname}
                   onChange={handleChange}
                 />
+                {(touched.firstname || submitted) && !success && form.firstname.trim().length <= 1 && (
+                  <span className="text-xs text-red-400">Digite seu nome.</span>
+                )}
                 <Input
                   type="text"
                   name="lastname"
@@ -163,6 +199,9 @@ export default function Contact() {
                   value={form.lastname}
                   onChange={handleChange}
                 />
+                {(touched.lastname || submitted) && !success && form.lastname.trim().length <= 1 && (
+                  <span className="text-xs text-red-400">Digite seu sobrenome.</span>
+                )}
                 <Input
                   type="email"
                   name="email"
@@ -170,6 +209,9 @@ export default function Contact() {
                   value={form.email}
                   onChange={handleChange}
                 />
+                {(touched.email || submitted) && !success && !isValidEmail(form.email) && (
+                  <span className="text-xs text-red-400">Digite um e-mail válido.</span>
+                )}
                 <Input
                   type="text"
                   name="phone"
@@ -177,6 +219,9 @@ export default function Contact() {
                   value={form.phone}
                   onChange={handleChange}
                 />
+                {(touched.phone || submitted) && !success && form.phone.trim().length <= 7 && (
+                  <span className="text-xs text-red-400">Digite seu telefone completo.</span>
+                )}
               </div>
 
               <Select value={form.service} onValueChange={handleServiceChange}>
@@ -192,6 +237,9 @@ export default function Contact() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+              {(touched.service || submitted) && !success && form.service.trim().length <= 1 && (
+                <span className="text-xs text-red-400">Selecione um serviço.</span>
+              )}
 
               <Textarea
                 className="h-[200px]"
@@ -200,6 +248,9 @@ export default function Contact() {
                 value={form.message}
                 onChange={handleChange}
               />
+              {(touched.message || submitted) && !success && form.message.trim().length <= 5 && (
+                <span className="text-xs text-red-400">Digite uma mensagem mais detalhada.</span>
+              )}
 
               <Button
                 type="submit"

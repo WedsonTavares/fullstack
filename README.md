@@ -13,7 +13,7 @@
 Framer Motion: Biblioteca para animações suaves e interativas.
 
 
-<img alt="Framer Motion" src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&amp;logo=framer&amp;logoColor=white">Conjunto de ícones para React.
+<img alt="Framer Motion" src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&amp;logo=framer&amp;logoColor=white">Conjunto de ícones para React. 
 
 
 
