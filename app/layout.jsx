@@ -61,15 +61,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* SEO tags */}
-        <title>Seu Título do Site</title>
-        <meta name="description" content="Descrição da página para SEO e Google." />
+        {/* SEO tags reais do metadata */}
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords.join(", ")} />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Seu Título do Site" />
-        <meta property="og:description" content="Descrição da página para redes sociais." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://seudominio.com" />
-        <meta property="og:image" content="/assets/perfil.jpeg" />
+        <meta name="author" content={metadata.authors[0].name} />
+        <meta property="og:title" content={metadata.openGraph.title} />
+        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta property="og:type" content={metadata.openGraph.type} />
+        <meta property="og:url" content="https://tavaresdev.com" />
+        <meta property="og:image" content={metadata.openGraph.images[0].url} />
+        <meta property="og:site_name" content={metadata.openGraph.siteName} />
+        <meta property="og:locale" content={metadata.openGraph.locale} />
+        <meta name="twitter:card" content={metadata.twitter.card} />
+        <meta name="twitter:title" content={metadata.twitter.title} />
+        <meta name="twitter:description" content={metadata.twitter.description} />
+        <meta name="twitter:image" content={metadata.twitter.images[0]} />
+        <link rel="icon" href={metadata.icons.icon} />
         {/* Google Ads Global Site Tag (substitua AW-XXXXXXXXX pela sua chave) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
         <script dangerouslySetInnerHTML={{
