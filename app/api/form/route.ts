@@ -1,5 +1,3 @@
-// app/api/form/route.js
-
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
@@ -18,11 +16,11 @@ function isValidEmail(email) {
   return /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(email);
 }
 
-export async function POST(request) {
+export const POST = async (request) => {
   try {
     const data = await request.json();
 
-    // Validação e sanitização
+    // Sanitização e validação dos campos
     const firstname = sanitizeString(data.firstname, 50);
     const lastname = sanitizeString(data.lastname, 50);
     const email = sanitizeString(data.email, 100);
@@ -37,6 +35,7 @@ export async function POST(request) {
       );
     }
 
+    // Conexão com MongoDB com timeout
     const client = await Promise.race([
       clientPromise,
       timeoutAfter(9000),
@@ -45,6 +44,7 @@ export async function POST(request) {
     const db = client.db("barbearia");
     const collection = db.collection("formulario_portifolio");
 
+    // Salva dados no banco
     await collection.insertOne({
       firstname,
       lastname,
@@ -61,11 +61,11 @@ export async function POST(request) {
     });
 
   } catch (error) {
-    // Log apenas genérico
-    console.error("Erro ao processar formulário.");
+    // Log detalhado para depuração
+    console.error("Erro ao processar formulário:", error);
     return NextResponse.json(
-      { error: "Erro interno ao processar o formulário." },
+      { error: "Erro interno ao processar o formulário.", details: String(error) },
       { status: 500 }
     );
   }
-}
+};
