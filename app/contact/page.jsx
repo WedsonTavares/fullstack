@@ -15,11 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-<<<<<<< HEAD
 import emailjs from "@emailjs/browser"; // Importe o Email.js
-=======
-import emailjs from "emailjs-com";
->>>>>>> 54f6e61 (Melhorias de SEO, UX do formulário, integração Google Ads e ajustes de segurança)
 
 const info = [
   { icon: <FaPhoneAlt />, title: "Telefone", descripition: "(16) 992331680" },
