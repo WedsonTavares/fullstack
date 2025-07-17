@@ -52,7 +52,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Tavares Sistemas",
     description: "Portfólio profissional de Wedson Tavares. Veja projetos, habilidades e experiências em desenvolvimento web com React, Next.js e mais.",
-    images: ["/assets/og-image.png"],
+    images: ["/assets/ogimage.png"],
   },
   icons: {
     icon: "/favicon.ico"
