@@ -49,8 +49,8 @@ const projects = [
         images: [
             '/assets/vidrocar.png'
         ],
-        live: 'vidrocartga.com.br',
-        github: 'vidrocartga.com.br'
+        live: 'https://www.vidrocartga.com.br/',
+        github: 'https://www.vidrocartga.com.br/'
     },
     {
         num: '03',
@@ -226,13 +226,12 @@ export default function Projects() {
                                             <Image
                                                 src={img}
                                                 alt={`Imagem ${idx + 1} do projeto ${project.title}`}
-                                                fill
-                                                className='object-contain rounded-xl transition-all duration-300 shadow-lg'
+                                                width={600}
+                                                height={400}
+                                                className='object-contain rounded-xl transition-all duration-300 shadow-lg w-full h-full'
                                                 style={{
-                                                    left: 0,
-                                                    top: 0,
-                                                    width: '100%',
-                                                    height: '100%',
+                                                    minWidth: '300px',
+                                                    minHeight: '200px',
                                                     maxWidth: '100%',
                                                     maxHeight: '100%',
                                                     position: 'absolute'

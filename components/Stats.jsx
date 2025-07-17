@@ -35,9 +35,9 @@ export default function Stats() {
                                     delay={2}
                                     className="text-4xl xl:text-6xl font-extrabold"
                                 />
-                                <p className={`${
-                                    item.text.length < 15 ? "max-w[100px]" : "max-w-[150px]"
-                                }leading-snug text-white/80`}
+                                <p
+                                    className={`leading-snug text-white/80 ${item.text.length < 15 ? 'max-w-[100px]' : 'max-w-[150px]'}`}
+                                    style={{ minWidth: item.text.length < 15 ? '100px' : '150px' }}
                                 >
                                     {item.text}
                                 </p>

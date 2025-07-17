@@ -26,9 +26,9 @@ export default function Foto() {
                          mix-blend-lighten absolute"
                 >
                     <Image
-                        src="/assets/perfil.jpeg" // Caminho corrigido
+                        src="/assets/perfil.png" // Caminho corrigido
                         priority
-                        quality={100}
+                        quality={80}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt="Foto de perfil"
