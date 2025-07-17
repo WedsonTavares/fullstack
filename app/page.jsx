@@ -15,8 +15,7 @@ export default function Home() {
           <div className="text-center xl:text-left order-2 xl:order-none">
             <span className="text-xl">Desenvolvedor de Software:</span>
             <h1 className="h2 mb-6">Olá, eu sou <br /><span className="text-accent">Wedson Tavares</span></h1>
-            <p className="max-w-[500px] mb-9 text-white/80">Sou fera em criar experiências digitais incríveis e tenho bastante
-              habilidade com diversas línguagens e tecnologias.</p>
+            <p className="max-w-[500px] mb-9 text-white/80">desenvolvedor de software com sólida experiência na criação de soluções digitais inovadoras e funcionais. Minha paixão é transformar ideias em produtos que entregam valor real, combinando design inteligente com tecnologia de ponta.</p>
             {/* btn */}
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <Button
