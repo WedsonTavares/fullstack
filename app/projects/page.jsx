@@ -16,7 +16,6 @@ import {
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Description } from '@radix-ui/react-dialog';
 import WorkSliderBtns from '@/components/WorkSliderBtns';
 
 // Definição dos projetos
@@ -33,37 +32,31 @@ const projects = [
         ],
         images: [
             '/assets/interiores2.png',
-            '/assets/interiores3.png',
-            '/assets/interiores-mob.png',
-            '/assets/interiores-mob2.png',
-            '/assets/interiores4.png',
-            '/assets/interiores5.png',
-            '/assets/interiores6.png'
         ],
         live: 'https://leafy-salamander-302e1a.netlify.app/',
-        github: 'https://github.com/WedsonTavares'
+        github: 'https://leafy-salamander-302e1a.netlify.app/'
     },
     {
         num: '02',
-        category: 'FullStack',
+        category: 'Frontend',
         title: 'Projeto2',
-        description: 'Descrição do projeto 2',
+        description: 'Landing page Vidrocar',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },
             { name: 'Javascript' }
         ],
         images: [
-            '/assets/frontend.png'
+            '/assets/vidrocar.png'
         ],
-        live: '',
-        github: 'https://github.com/WedsonTavares'
+        live: 'vidrocartga.com.br',
+        github: 'vidrocartga.com.br'
     },
     {
         num: '03',
-        category: 'Landing Page',
+        category: 'FullStack',
         title: 'Projeto3',
-        description: 'Descrição do projeto 3',
+        description: 'Landing page Soldati Elétrica',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },

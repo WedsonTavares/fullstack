@@ -15,19 +15,19 @@ const services = [
     {
         num: '02',
         title: 'UI/UX Design',
-        description: 'Design de interfaces intuitivas e experiências de usuário envolventes..',
+        description: 'Design de interfaces intuitivas e experiências de usuário envolventes, responsivas, e com otimização SEO.',
         href: undefined
     },
     {
         num: '03',
         title: 'Logo Design',
-        description: 'Desenvolvimento de logo com IA.',
+        description: 'Desenvolvimento de logo com IA e design personalizado.',
         href: undefined
     },
     {
         num: '04',
         title: 'Backend Dev',
-        description: 'Criação do back otimizado e eficiente, atendendo suas necessidades.',
+        description: 'Criação de APIs RESTful e integração de api externa.',
         href: undefined
     },
 ];
@@ -55,11 +55,19 @@ export default function Services() {
                                     group-hover:text-outline-hover transition-all duration-500'>
                                         {service.num}
                                     </div>
-                                    <Link href={service.href} className='w-[65px] h-[65px] flex bg-white rounded-full 
-                                    group-hover:bg-accent transition-all duration-500 
-                                    justify-center items-center hover:-rotate-45'>
-                                        <BsArrowDownRight className='text-primary text-3xl' />
-                                    </Link>
+                                    {service.href ? (
+                                        <Link href={service.href} className='w-[65px] h-[65px] flex bg-white rounded-full 
+                                        group-hover:bg-accent transition-all duration-500 
+                                        justify-center items-center hover:-rotate-45'>
+                                            <BsArrowDownRight className='text-primary text-3xl rotate-90 transition-transform duration-500' />
+                                        </Link>
+                                    ) : (
+                                        <span className='w-[65px] h-[65px] flex bg-white rounded-full 
+                                        group-hover:bg-accent transition-all duration-500 
+                                        justify-center items-center opacity-50 group-hover:-rotate-45'>
+                                            <BsArrowDownRight className='text-primary text-3xl' />
+                                        </span>
+                                    )}
                                 </div>
                                 {/* Título */}
                                 <h2 className='text-[42px] font-bold leading-none text-white group-hover:text-accent 

@@ -26,7 +26,7 @@ const about = {
         },
         {
             title: "Experiência:",
-            value: "1 ano"
+            value: "2 anos"
         },
         {
             title: "Linkedin:",
@@ -54,23 +54,14 @@ const experience = {
     description: "Experiências profissionais",
     items: [
         {
-            company: "Pentare Consultoria",
-            position: "Dev jr Dynamics 365 CRM",
-            duration: "Atual",
+            company: "Freelance",
+            position: "Desenvolvedor Frontend",
+            duration: "Atualmente",
         },
+
         {
             company: "Fynd",
             position: "Desenvolvedor React Jr 10/2024",
-            duration: "2024",
-        },
-        {
-            company: "Hackaton de TI Faculdade",
-            position: "Desenvolvedor Frontend",
-            duration: "2024",
-        },
-        {
-            company: "Freelance",
-            position: "Desenvolvedor Frontend",
             duration: "2024",
         },
     ]
