@@ -16,9 +16,10 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL("https://tavaresdev.com"),
   title: "Tavares Sistemas",
-  description: "Portfólio profissional de Wedson Tavares. Veja projetos, habilidades e experiências em desenvolvimento web com React, Next.js e mais.",
+  description: "Meu portfólio Profissional. Veja meus projetos, habilidades e experiências em desenvolvimento web com React, Next.js e mais.",
   keywords: [
     "Tavares Sistemas",
+    "Tavares Tecnologia",
     "Wedson Tavares",
     "portfólio",
     "desenvolvedor web",
@@ -32,10 +33,10 @@ export const metadata = {
   authors: [{ name: "Wedson Tavares" }],
   creator: "Wedson Tavares",
   openGraph: {
-    title: "Tavares Sistemas | Portfólio de Wedson Tavares",
-    description: "Portfólio profissional de Wedson Tavares. Veja projetos, habilidades e experiências em desenvolvimento web.",
+    title: "Tavares Tecnologia | Portfólio de Wedson Tavares",
+    description: "Meu Portfólio profissional. Veja meus projetos, habilidades e experiências em desenvolvimento web com React, Next.js e mais.",
     url: "https://tavaresdev.com",
-    siteName: "Tavares Sistemas",
+    siteName: "Tavares Tecnologia",
     locale: "pt_BR",
     type: "website",
     images: [
