@@ -20,9 +20,11 @@ export default function Nav() {
                 return <Link 
                 href={link.path} 
                 key={index} 
-                className={`${
-                    link.path === pathName && "text-accent border-b-2 border-accent"
-                } capatalize font-medium hover:text-accent transition-all`}
+                className={`
+                    capitalize font-medium transition-all
+                    ${(link.path === "/" && pathName === "/") || (link.path !== "/" && pathName.startsWith(link.path)) ? "text-accent border-b-2 border-accent" : "text-white border-b-2 border-transparent"}
+                    hover:text-accent
+                `}
                 >
                     {link.name}
                     </Link>
