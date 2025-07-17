@@ -10,25 +10,25 @@ const services = [
         num: '01',
         title: 'Desenvolvimento Web',
         description: 'Criação de sites e aplicações web responsivas e otimizadas.',
-        href: ""
+        href: undefined
     },
     {
         num: '02',
         title: 'UI/UX Design',
         description: 'Design de interfaces intuitivas e experiências de usuário envolventes..',
-        href: ""
+        href: undefined
     },
     {
         num: '03',
         title: 'Logo Design',
         description: 'Desenvolvimento de logo com IA.',
-        href: ""
+        href: undefined
     },
     {
         num: '04',
         title: 'Backend Dev',
         description: 'Criação do back otimizado e eficiente, atendendo suas necessidades.',
-        href: ""
+        href: undefined
     },
 ];
 

@@ -1,3 +1,4 @@
+
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -61,7 +62,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* SEO tags reais do metadata */}
+        {/* Tags SEO e comentários em português */}
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
@@ -87,7 +88,7 @@ export default function RootLayout({ children }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-XXXXXXXXX');
-            // Gatilho de conversão exemplo:
+            // Exemplo de gatilho de conversão:
             window.triggerConversion = function(label) {
               gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXXX/' + label});
             }
