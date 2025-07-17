@@ -2,7 +2,6 @@
 
 import { BsArrowDownRight } from 'react-icons/bs'; // Importa o ícone BsArrowDownRight do react-icons
 import Link from 'next/link'; // Importa o componente Link do Next.js para navegação
-import { Description } from '@radix-ui/react-dialog'; // Importa o componente Description do Radix UI
 
 // Definição dos serviços
 const services = [
