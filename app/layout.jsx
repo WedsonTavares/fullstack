@@ -1,5 +1,6 @@
 // app/layout.tsx
 import { JetBrains_Mono } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 
 // Componentes
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
         <main>
           <PageTransition>{children}</PageTransition>
         </main>
+        <GoogleAnalytics gaId="G-7KW5L29VX8" />
       </body>
     </html>
   );
