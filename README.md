@@ -103,6 +103,6 @@ git clone https://github.com/seu-usuario/seu-repositorio.git
 3.Instale as dependências.
 4. 🚀 Executando o Projeto
 Para iniciar o servidor de desenvolvimento, execute: npm run dev
-5. Abra o navegador e acesse http://localhost:3000 para ver o projeto em execução.
+5. Abra o navegador e acesse http://localhost:3000 para ver o projeto em execução..
 
 
