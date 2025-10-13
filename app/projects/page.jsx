@@ -70,18 +70,18 @@ const projects = [
     },
     {
         num: '04',
-        category: 'FullStack',
+        category: 'Frontend',
         title: 'Projeto4',
-        description: 'Descrição do projeto 4',
+        description: 'Landing Page CodeVance',
         stack: [
             { name: 'Html5' },
             { name: 'Css' },
             { name: 'Javascript' }
         ],
         images: [
-            '/assets/frontend.png'
+            '/assets/codevance.png'
         ],
-        live: '',
+        live: 'https://cloudence.vercel.app/',
         github: 'https://github.com/WedsonTavares'
     },
     {

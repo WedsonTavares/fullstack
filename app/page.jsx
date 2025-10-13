@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { FiDownload } from 'react-icons/fi';
 
@@ -23,7 +24,7 @@ export default function Home() {
                 size="lg"
                 className="uppercase flex items-center gap-2"
               >
-                <span><a href="/assets/Jose_Wedson_Tavares_CV.pdf" download>Download CV</a></span>
+                <span><a href="/assets/Jose_Wedson_Tavares_da_Silva_Sobral.pdf" download>Download CV</a></span>
                 <FiDownload className="text-xl flex gap-46" />
               </Button>
               <div className="mb-0 xl: mb-">
