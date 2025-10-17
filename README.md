@@ -1,5 +1,7 @@
 # Portfólio Fullstack
 
+
+
 Este projeto é um portfólio profissional desenvolvido com Next.js, React, TailwindCSS, Swiper, Framer Motion e integração com MongoDB Atlas. Ele apresenta projetos, estatísticas, currículo para download e formulário de contato.
 
 ## Estrutura do Projeto
