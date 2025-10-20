@@ -5,16 +5,17 @@ import {
     FaCss3,
     FaJs,
     FaReact,
-    FaNodeJs
+    FaNodeJs,
+    FaDocker,
+    FaDeploydog
 } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs, SiGit } from "react-icons/si"; // Removido o import duplicado de SiGit
+import { SiTailwindcss, SiNextdotjs, SiGit, SiPostgresql, SiSupabase } from "react-icons/si"; // Removido o import duplicado de SiGit
 
 // Dados sobre mim
 const about = {
     mTitle: "Sobre min",
-    description: `Eu sou um desenvolvedor web apaixonado por tecnologia, 
-    sempre buscando aprender coisas novas e melhorar minhas habilidades. 
-    Atualmente estou estudando desenvolvimento web e app com React e Next.js e Api Rest.`,
+    description: `Desenvolvedor Full Stack em formação, apaixonado por tecnologia e inovação. Atuo como Desenvolvedor Júnior, com experiência prática em aplicações web usando React, Next.js, Node.js, TypeScript, Supabase e Docker.
+Tenho foco em soluções eficientes, escaláveis e com ótima experiência do usuário, aplicando boas práticas de código e integração via APIs RESTful. Sou proativo e autodidata, sempre em busca de evoluir e gerar impacto real através da tecnologia.`,
     info: [
         {
             title: "Nome:",
@@ -55,13 +56,18 @@ const experience = {
     items: [
         {
             company: "Freelance",
-            position: "Desenvolvedor Frontend",
+            position: "Desenvolvedor FullStack Jr",
             duration: "Atualmente",
         },
 
         {
             company: "Fynd",
-            position: "Desenvolvedor React Jr 10/2024",
+            position: "Desenvolvedor React Jr 10/2024 a 05/2025",
+            duration: "2024",
+        },
+        {
+            company: "Pentary",
+            position: "Desenvolvedor Jr CRM 05/2025 a 08/2025",
             duration: "2024",
         },
     ]
@@ -75,18 +81,23 @@ const education = {
     items: [
         {
             institution: "Universidade Estácio de Sá",
-            degree: "Ciências da Computação",
-            duration: "Cursando",
+            degree: "Bacharel em Ciências da Computação.",
+            duration: "Cursando 4° Semestre",
+        },
+        {
+            institution: "Udemy",
+            degree: "JavaScript e TypeScript.",
+            duration: "2024 a 2025",
         },
         {
             institution: "Universidade Estácio de Sá",
-            degree: "Desenvolvimento full web.",
+            degree: "Desenvolvimento FullStack Web.",
             duration: "2024",
         },
         {
             institution: "Instituto Federal Rio Grande do Sul",
-            degree: "Programador Web",
-            duration: "2024",
+            degree: "Programador Web.",
+            duration: "2024 a 2025",
         },
         {
             institution: "Instituto Federal Rio Grande do Sul",
@@ -94,19 +105,39 @@ const education = {
             duration: "2025",
         },
         {
-            institution: "Udemy",
-            degree: "Javascript e TypeScript",
-            duration: "Cursando",
-        },
-        {
-            institution: "Danki Code",
+            institution: "Instituto Federal Rio Grande do Sul",
             degree: "Node.js",
             duration: "2025",
         },
         {
-            institution: "Danki Code",
-            degree: "Banco de Dados",
+            institution: "Resilia EducaçãoInstituto Federal Rio Grande do Sul",
+            degree: "Sistemas Web",
             duration: "2025",
+        },
+        {
+            institution: "Udemy",
+            degree: "Next.js",
+            duration: "2025",
+        },
+        {
+            institution: "Udemy",
+            degree: "Docker",
+            duration: "2025",
+        },
+        {
+            institution: "Instituto Federal de Educação, Ciência e Tecnologia",
+            degree: "React.js",
+            duration: "2025",
+        },
+        {
+            institution: "Instituto Federal de Educação, Ciência e Tecnologia",
+            degree: "JavaScript",
+            duration: "2025",
+        },
+        {
+            institution: "Resilia Educação",
+            degree: "Análise de Dados",
+            duration: "2023",
         },
     ]
 };
@@ -117,23 +148,11 @@ const skills = {
     description: "Habilidades técnicas",
     skillList: [
         {
-            name: "HTML",
-            icon: <FaHtml5 />
-        },
-        {
-            name: "CSS",
-            icon: <FaCss3 />
-        },
-        {
             name: "Javascript",
             icon: <FaJs />
         },
         {
             name: "React",
-            icon: <FaReact />
-        },
-        {
-            name: "React Native",
             icon: <FaReact />
         },
         {
@@ -153,9 +172,30 @@ const skills = {
             icon: <SiGit />
         },
         {
-            name: "Versionamento de código",
-            icon: <SiGit />
-        }
+            name: "HTML",
+            icon: <FaHtml5 />
+        },
+        {
+            name: "CSS",
+            icon: <FaCss3 />
+        },
+        {
+            name: "Docker",
+            icon: <FaDocker />
+        },
+        {
+            name: 'PostgreSQL',
+            icon: <SiPostgresql />
+        },
+        {
+            name: "Supabase",
+            icon: <SiSupabase />
+        },
+        {
+            name: "React Native",
+            icon: <FaReact />
+        },
+
     ]
 }
 
@@ -198,7 +238,7 @@ export default function Resume() {
                                                     <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">{item.position}</h3>
                                                     <div className="flex gap-3 items-center">
                                                         {/* Ponto */}
-                                                        
+
                                                         <p className="text-white/60">{item.company}</p>
                                                     </div>
                                                 </li>
@@ -223,7 +263,7 @@ export default function Resume() {
                                                     <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">{item.degree}</h3>
                                                     <div className="flex gap-3 items-center">
                                                         {/* Ponto */}
-                                                        
+
                                                         <p className="text-white/60">{item.institution}</p>
                                                     </div>
                                                 </li>

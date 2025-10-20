@@ -19,8 +19,8 @@ const services = [
     },
     {
         num: '03',
-        title: 'Logo Design',
-        description: 'Desenvolvimento de logo com IA e design personalizado.',
+        title: 'Frontend Dev',
+        description: 'Desenvolvimento de interfaces web com foco em performance e usabilidade.',
         href: undefined
     },
     {

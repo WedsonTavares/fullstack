@@ -81,8 +81,8 @@ const projects = [
         images: [
             '/assets/codevance.png'
         ],
-        live: 'https://cloudence.vercel.app/',
-        github: 'https://github.com/WedsonTavares'
+        live: 'https://cloudence.netlify.app/',
+        github: 'https://github.com/WedsonTavares/cloudence'
     },
     {
         num: '05',
