@@ -1,11 +1,16 @@
-// Minimal flat ESLint config compatible with Next.js 15+.
-// This avoids using the old "extends" key and avoids importing CommonJS-only packages.
+// Flat ESLint config using the official Next.js config to ensure the Next plugin is applied.
+import next from "eslint-config-next";
+
 export default [
+  // Use Next's recommended flat config
+  next,
+  // Project ignores and custom rules
   {
     ignores: ["node_modules/**", ".next/**"],
   },
   {
-    // Project-level rules can go here. Keep empty to use defaults.
-    rules: {},
+    rules: {
+      // exemplo: 'no-console': 'warn'
+    },
   },
 ];
