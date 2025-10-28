@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
+import { getClientPromise } from "@/lib/mongodb";
 
 function timeoutAfter(ms) {
   return new Promise((_, reject) =>
@@ -36,10 +36,14 @@ export const POST = async (request) => {
     }
 
     // Conexão com MongoDB com timeout
+    // Usa getClientPromise() para evitar lançar erro na importação quando MONGODB_URI não estiver configurada.
     const client = await Promise.race([
-      clientPromise,
+      getClientPromise(),
       timeoutAfter(9000),
-    ]);
+    ]).catch((err) => {
+      // Caso a variável não esteja definida ou haja timeout, lança para o catch geral
+      throw err;
+    });
 
     const db = client.db("barbearia");
     const collection = db.collection("formulario_portifolio");
